@@ -1,0 +1,21 @@
+# ---------------------------------------------------------------------------
+# docker-compose file for builders - those are used in the Makefile with
+#
+#     docker-compose build
+#
+# to create images either for shipping or helping to build/generate other
+# things/assets.
+# ---------------------------------------------------------------------------
+version: '3'
+
+services:
+  # ---------------------------------------------------------------------------
+  # pre-commit
+  # ---------------------------------------------------------------------------
+  pre-commit:
+    build:
+      dockerfile: Dockerfile
+      args:
+        PRE_COMMIT_VERSION: ${PRE_COMMIT_VERSION:-latest}
+    image: local/pre-commit:latest
+    # image: ${DOCKER_IMAGE}:${VERSION}
